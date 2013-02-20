@@ -39,7 +39,17 @@ public class LoginActivity extends Activity {
 	}
 	
 	public void login(View view){
+		EditText editTextUsername = (EditText) findViewById(R.id.editTextUsername);
+		EditText editTextPassword = (EditText) findViewVyId(R.id.editTextPassword);
+		String username = editTextUsername.getText().toString();
+		String password = editTextPassword.getText().toString();
 		
+		Intent startMessageActivityIntent = new Intent(this, ChatClientMessageActivity.class);
+		startMessageActivityIntent.putExtra("IP", ip);
+		startMessageActivityIntent.putExtra("port", port);
+		startMessageActivityIntent.putExtra("username", username);
+		startMessageActivityIntent.putExtra("password", password);
+		startActivity(intent);
 	}
 
 }
