@@ -15,10 +15,12 @@ public class ChatClientMessageActivity extends Activity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_chat_client_message);
+		
 		Intent intent = getIntent();
 		String ip = intent.getStringExtra("IP");
 		int port = intent.getIntExtra("Port", 9999);
-		client = (ChatClient) intent.getParcelableExtra("Client");
+		
+		client = new ChatClient(ip, port);
 		
 	}
 
