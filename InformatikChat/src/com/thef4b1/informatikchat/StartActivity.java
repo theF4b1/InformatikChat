@@ -25,7 +25,6 @@ public class StartActivity extends Activity {
 		intent.putExtra("IP", ip);
 		intent.putExtra("port", port);
 		
-		Object chatClient = client;
 		startActivity(intent);
 	}
 	
