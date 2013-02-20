@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">InformatikChat</string>
+    <string name="menu_settings">Settings</string>
+    
+    <string name="prompt_ip">Server-IP</string>
+    <string name="prompt_port">Server-Port</string>
+    <string name="prompt_message">Enter Message</string>
+    <string name="prompt_username">Username</string>
+    <string name="prompt_password">Password</string>
+    
+    <string name="button_connect">Connect</string>
+    <string name="button_send">Send</string>
+    <string name="button_register">Register</string>
+    <string name="button_login">Login</string>
+    
+    <string name="title_activity_chat_client_login">ChatClientLoginActivity</string>
+    <string name="title_activity_login">Login</string>
+
+</resources>
