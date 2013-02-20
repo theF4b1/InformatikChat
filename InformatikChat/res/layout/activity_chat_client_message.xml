@@ -14,24 +14,14 @@
         android:layout_alignParentTop="true"
         android:orientation="vertical" >
 
-        <ScrollView
-            android:id="@+id/scrollView1"
-            android:layout_weight="9"
+        <ListView
+            android:id="@+id/listView1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="fill_horizontal" >
-
-            <EditText
-                android:id="@+id/editTextChat"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="200dp"
-                android:ems="10"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
-                android:inputType="none|textMultiLine" />
-
-        </ScrollView>
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_weight="25" >
+        </ListView>
 
         <LinearLayout
             android:layout_width="match_parent"
