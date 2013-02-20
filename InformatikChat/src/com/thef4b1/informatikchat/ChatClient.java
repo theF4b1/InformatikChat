@@ -1,20 +1,33 @@
 package com.thef4b1.informatikchat;
 
+import java.util.ArrayList;
+
+import android.content.Context;
+import android.content.Intent;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.Toast;
 import classes.netzklassen.Client;
 
 public class ChatClient extends Client {
 	//Adapter und ArrayList für die ListView
 	ArrayAdapter<String> adapter;
-	ArrayList<String> listItems=new ArrayList<String>();
+	ArrayList<String> listItems = new ArrayList<String>();
+	
+	String ip;
+	int port;
 	
 	public ChatClient(String pIPAdresse, int pPortNr) {
 		super(pIPAdresse, pPortNr);
 		
 		//Adapter Konstruktor für listview:
-		adapter=new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listItems);
+		adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listItems);
 		ListView listView = (ListView) findViewById(R.id.listView1);
 		listView.setAdapter(adapter);
+		
+		ip = pIPAdresse;
+		port = pPortNr;
 	}
 
 	@Override
@@ -68,7 +81,7 @@ public class ChatClient extends Client {
 		String[] userArray = msgBody.split("#");
 		
 		
-		Context context = getApplicationContext();
+		Context context = StartActivity.getAppContext();
 		int duration = Toast.LENGTH_SHORT;
 		
 		for (int i = 0; i < userArray.length; i++) {
@@ -79,11 +92,11 @@ public class ChatClient extends Client {
 	
 	public void processCommand(String msgBody){
 	        if (msgBody.equals("LOGINFALSE")) {
-	            setContentView(R.layout.activity_login);
-	            Context context = getApplicationContext();
-		    int duration = Toast.LENGTH_LONG;
-		    
-		    Toast toast = Toast.makeText(context, "No registration or wrong password!", duration);
-	            toast.show();
+		        Context context = StartActivity.getAppContext();
+			    int duration = Toast.LENGTH_LONG;
+			    
+			    Toast toast = Toast.makeText(context, "No registration or wrong password! Please try again.", duration);
+		            toast.show();
 	        }
 	}
+}

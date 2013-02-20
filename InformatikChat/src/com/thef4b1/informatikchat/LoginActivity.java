@@ -1,15 +1,20 @@
 package com.thef4b1.informatikchat;
 
 import android.os.Bundle;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.support.v4.app.NavUtils;
 
+@SuppressLint("NewApi")
 public class LoginActivity extends Activity {
-
+	String ip;
+	int port;
+	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -17,8 +22,8 @@ public class LoginActivity extends Activity {
 		// Show the Up button in the action bar.
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		Intent intent = getIntent();
-		String ip = intent.getStringExtra("IP");
-		int port = intent.getIntExtra("Port", 9999);
+		ip = intent.getStringExtra("IP");
+		port = intent.getIntExtra("Port", 9999);
 	}
 
 	@Override
@@ -40,7 +45,7 @@ public class LoginActivity extends Activity {
 	
 	public void login(View view){
 		EditText editTextUsername = (EditText) findViewById(R.id.editTextUsername);
-		EditText editTextPassword = (EditText) findViewVyId(R.id.editTextPassword);
+		EditText editTextPassword = (EditText) findViewById(R.id.editTextPassword);
 		String username = editTextUsername.getText().toString();
 		String password = editTextPassword.getText().toString();
 		
@@ -49,7 +54,7 @@ public class LoginActivity extends Activity {
 		startMessageActivityIntent.putExtra("port", port);
 		startMessageActivityIntent.putExtra("username", username);
 		startMessageActivityIntent.putExtra("password", password);
-		startActivity(intent);
+		startActivity(startMessageActivityIntent);
 	}
 
 }
