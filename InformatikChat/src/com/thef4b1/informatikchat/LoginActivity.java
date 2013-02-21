@@ -49,12 +49,12 @@ public class LoginActivity extends Activity {
 		String username = editTextUsername.getText().toString();
 		String password = editTextPassword.getText().toString();
 		
-		Intent startMessageActivityIntent = new Intent(this, ChatClientMessageActivity.class);
-		startMessageActivityIntent.putExtra("IP", ip);
-		startMessageActivityIntent.putExtra("port", port);
-		startMessageActivityIntent.putExtra("username", username);
-		startMessageActivityIntent.putExtra("password", password);
-		startActivity(startMessageActivityIntent);
+		Intent intent = new Intent(this, ChatClientMessageActivity.class);
+		intent.putExtra("IP", ip);
+		intent.putExtra("Port", port);
+		intent.putExtra("Username", username);
+		intent.putExtra("Password", password);
+		startActivity(intent);
 	}
 
 }
