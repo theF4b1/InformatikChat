@@ -13,17 +13,19 @@ import classes.netzklassen.Client;
 public class ChatClient extends Client {
 	//Adapter und ArrayList für die ListView
 	ArrayAdapter<String> adapter;
-	ArrayList<String> listItems = new ArrayList<String>();
+	ArrayList<String> listItems;
 	
+	ListView listView;
 	String ip;
 	int port;
 	
-	public ChatClient(String pIPAdresse, int pPortNr) {
+	public ChatClient(String pIPAdresse, int pPortNr, ListView aListView, ArrayAdapter<String> aAdapter, ArrayList<String> aListItems) {
 		super(pIPAdresse, pPortNr);
 		
-		//Adapter Konstruktor für listview:
-		adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listItems);
-		ListView listView = (ListView) findViewById(R.id.listView1);
+		adapter = aAdapter;
+		listItems = aListItems;
+		ListView listView = aListView;
+		
 		listView.setAdapter(adapter);
 		
 		ip = pIPAdresse;
@@ -32,15 +34,7 @@ public class ChatClient extends Client {
 
 	@Override
 	public void processMessage(String pMessage) {
-		//view ändern auf texteingabefeld:
-		//EditText editText = (EditText) findViewById(***);
-		ListView listView = (ListView) findViewById(R.id.listView1);
-		String message = editText.getText().toString();
-		
-		
-		
-		int index = message.indexOf(" ");
-
+		String message = pMessage;int index = message.indexOf(" ");
 	        if (index > -1) {
 	            String cmd = pMessage.substring(0, index);
 	            String msgBody = message.substring(index + 1);
@@ -58,9 +52,6 @@ public class ChatClient extends Client {
 	                processCommand(msgBody);
 	            }
 		}
-	
-	
-
 	}
 	
 	public void processUserMessage(String msgBody){
