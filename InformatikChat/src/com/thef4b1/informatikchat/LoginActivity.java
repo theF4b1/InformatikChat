@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 import android.support.v4.app.NavUtils;
 
 @SuppressLint("NewApi")
@@ -46,15 +47,23 @@ public class LoginActivity extends Activity {
 	public void login(View view){
 		EditText editTextUsername = (EditText) findViewById(R.id.editTextUsername);
 		EditText editTextPassword = (EditText) findViewById(R.id.editTextPassword);
-		String username = editTextUsername.getText().toString();
-		String password = editTextPassword.getText().toString();
 		
-		Intent intent = new Intent(this, ChatClientMessageActivity.class);
-		intent.putExtra("IP", ip);
-		intent.putExtra("Port", port);
-		intent.putExtra("Username", username);
-		intent.putExtra("Password", password);
-		startActivity(intent);
+		if(editTextUsername.length()==0 && editTextPassword.length()==0){
+		    int duration = Toast.LENGTH_LONG;
+		    Toast toast = Toast.makeText(getBaseContext(), R.string.toast_noip, duration);
+	        toast.show();
+		} else {
+			String username = editTextUsername.getText().toString();
+			String password = editTextPassword.getText().toString();
+			
+			Intent intent = new Intent(this, ChatClientMessageActivity.class);
+			intent.putExtra("IP", ip);
+			intent.putExtra("Port", port);
+			intent.putExtra("Username", username);
+			intent.putExtra("Password", password);
+			startActivity(intent);
+		}
+		
 	}
 
 }

@@ -45,8 +45,9 @@ public final class R {
         public static final int prompt_password=0x7f040006;
         public static final int prompt_port=0x7f040003;
         public static final int prompt_username=0x7f040005;
-        public static final int title_activity_chat_client_login=0x7f04000b;
-        public static final int title_activity_login=0x7f04000c;
+        public static final int title_activity_chat_client_login=0x7f04000c;
+        public static final int title_activity_login=0x7f04000d;
+        public static final int toast_noip=0x7f04000b;
     }
     public static final class style {
         /** 
