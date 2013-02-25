@@ -17,7 +17,7 @@
     
     <string name="toast_noip">Please enter IP and Port.</string>
    
-    <string name="title_activity_chat_client_login">ChatClientLoginActivity</string>
+    <string name="title_activity_chat_client_login">Messages</string>
     <string name="title_activity_login">Login</string>
 
 </resources>

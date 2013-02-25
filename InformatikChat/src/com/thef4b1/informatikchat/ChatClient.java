@@ -30,6 +30,11 @@ public class ChatClient extends Client {
 		
 		ip = pIPAdresse;
 		port = pPortNr;
+		
+		listItems.add(ip);
+		listItems.add(String.valueOf(port));
+		listItems.add("HALLOOOO!!!");
+		adapter.notifyDataSetChanged();
 	}
 
 	@Override

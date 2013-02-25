@@ -27,6 +27,9 @@ public class ChatClientMessageActivity extends Activity{
 		setContentView(R.layout.activity_chat_client_message);
 		
 		adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listItems);
+		ListView listView = (ListView) findViewById(R.id.listView1);
+		listView.setAdapter(adapter);
+		
 		
 		Intent intent = getIntent();
 		String ip = intent.getStringExtra("IP");
@@ -34,7 +37,17 @@ public class ChatClientMessageActivity extends Activity{
 		String username = intent.getStringExtra("Username");
 		String password = intent.getStringExtra("Password");
 		
-		client = new ChatClient(ip, port, listView, adapter, listItems);
+		
+		try {
+			client = new ChatClient(ip, port, listView, adapter, listItems);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			Context context = StartActivity.getAppContext();
+		    int duration = Toast.LENGTH_LONG;
+		    Toast toast = Toast.makeText(context, e.toString(), duration);
+	        toast.show();
+		}
 	}
 
 	@Override

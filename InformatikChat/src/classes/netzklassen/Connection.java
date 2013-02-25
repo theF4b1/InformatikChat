@@ -91,7 +91,7 @@ public class Connection extends Thread
             hatAusgabe = new PrintlnStream(hatSocket.getOutputStream(), true);
             zPartnerAdresse = this.verbindungsSocket().getInetAddress().toString();
             zPartnerAdresse = zPartnerAdresse.substring(zPartnerAdresse.indexOf('/') + 1);
-        zPartnerPort = this.verbindungsSocket().getPort();
+            zPartnerPort = this.verbindungsSocket().getPort();
 
         }
   
