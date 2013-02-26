@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,6 +16,14 @@ import android.support.v4.app.NavUtils;
 public class LoginActivity extends Activity {
 	String ip;
 	int port;
+	
+	public static final String PREFS_NAME = "MyPrefsFile";
+	SharedPreferences loginInfos;
+	
+	EditText editTextUsername;
+	EditText editTextPassword;
+	
+	
 	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -22,9 +31,12 @@ public class LoginActivity extends Activity {
 		setContentView(R.layout.activity_login);
 		// Show the Up button in the action bar.
 		getActionBar().setDisplayHomeAsUpEnabled(true);
-		Intent intent = getIntent();
-		ip = intent.getStringExtra("IP");
-		port = intent.getIntExtra("Port", 9999);
+		
+		editTextUsername = (EditText) findViewById(R.id.editTextUsername);
+		editTextPassword = (EditText) findViewById(R.id.editTextPassword);
+		
+		loginInfos = getSharedPreferences(PREFS_NAME, 0);
+		editTextUsername.setText(loginInfos.getString("username", ""));
 	}
 
 	@Override
@@ -45,10 +57,9 @@ public class LoginActivity extends Activity {
 	}
 	
 	public void login(View view){
-		EditText editTextUsername = (EditText) findViewById(R.id.editTextUsername);
-		EditText editTextPassword = (EditText) findViewById(R.id.editTextPassword);
 		
-		if(editTextUsername.length()==0 && editTextPassword.length()==0){
+		
+		if(editTextUsername.length()==0 || editTextPassword.length()==0){
 		    int duration = Toast.LENGTH_LONG;
 		    Toast toast = Toast.makeText(getBaseContext(), R.string.toast_noip, duration);
 	        toast.show();
@@ -56,14 +67,35 @@ public class LoginActivity extends Activity {
 			String username = editTextUsername.getText().toString();
 			String password = editTextPassword.getText().toString();
 			
+			SharedPreferences.Editor editor = loginInfos.edit();
+			editor.putString("username", username);
+			editor.putString("password", password);
+			editor.commit();
+			
 			Intent intent = new Intent(this, ChatClientMessageActivity.class);
-			intent.putExtra("IP", ip);
-			intent.putExtra("Port", port);
-			intent.putExtra("Username", username);
-			intent.putExtra("Password", password);
 			startActivity(intent);
 		}
 		
+	}
+	
+	public void register(View view){
+		if(editTextUsername.length()==0 || editTextPassword.length()==0){
+		    int duration = Toast.LENGTH_LONG;
+		    Toast toast = Toast.makeText(getBaseContext(), R.string.toast_noip, duration);
+	        toast.show();
+		} else {
+			String username = editTextUsername.getText().toString();
+			String password = editTextPassword.getText().toString();
+			
+			SharedPreferences.Editor editor = loginInfos.edit();
+			editor.putString("username", username);
+			editor.putString("password", password);
+			editor.putBoolean("register?", true);
+			editor.commit();
+			
+			Intent intent = new Intent(this, ChatClientMessageActivity.class);
+			startActivity(intent);
+		}
 	}
 
 }

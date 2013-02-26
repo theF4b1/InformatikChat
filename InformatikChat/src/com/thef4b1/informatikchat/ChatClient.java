@@ -2,14 +2,17 @@ package com.thef4b1.informatikchat;
 
 import java.util.ArrayList;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.os.StrictMode;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 import classes.netzklassen.Client;
 
+@SuppressLint("NewApi")
 public class ChatClient extends Client {
 	//Adapter und ArrayList für die ListView
 	ArrayAdapter<String> adapter;
@@ -19,8 +22,12 @@ public class ChatClient extends Client {
 	String ip;
 	int port;
 	
+	
+	
 	public ChatClient(String pIPAdresse, int pPortNr, ListView aListView, ArrayAdapter<String> aAdapter, ArrayList<String> aListItems) {
 		super(pIPAdresse, pPortNr);
+		
+		
 		
 		adapter = aAdapter;
 		listItems = aListItems;
@@ -35,6 +42,7 @@ public class ChatClient extends Client {
 		listItems.add(String.valueOf(port));
 		listItems.add("HALLOOOO!!!");
 		adapter.notifyDataSetChanged();
+		
 	}
 
 	@Override

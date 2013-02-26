@@ -1,5 +1,8 @@
 package classes.netzklassen;
 
+import android.annotation.SuppressLint;
+import android.os.StrictMode;
+
  
 
 /**
@@ -9,6 +12,7 @@ Die Eingaben werden nebenl&auml;ufig verarbeitet.
 @author Horst Hildebrecht
 @version 1.0 vom 16.08.2006
 */
+@SuppressLint("NewApi")
 public abstract class Client 
 {
 
@@ -16,15 +20,17 @@ public abstract class Client
     private Connection hatVerbindung;
     private Clientempfaenger hatEmpfaenger;
      
-   
     
     /**
     Der Client ist mit Ein- und Ausgabestreams initialisiert.<br>
     @param pIPAdresse IP-Adresse bzw. Domain des Servers
     @param pPortNr Portnummer des Sockets
     */
-    public Client(String pIPAdresse, int pPortNr)
-    {
+    public Client(String pIPAdresse, int pPortNr){
+    	
+    	StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+    	StrictMode.setThreadPolicy(policy); 
+    	
         hatVerbindung = new Connection(pIPAdresse, pPortNr);
         
         try
