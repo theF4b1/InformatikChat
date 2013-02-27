@@ -32,28 +32,27 @@ public class StartActivity extends Activity {
 	}
 	
 	public void connectToServer(View view){
-		
-		
 		if(editTextIp.length()==0 || editTextPort.length()==0){
 		    int duration = Toast.LENGTH_LONG;
 		    Toast toast = Toast.makeText(context, R.string.toast_noip, duration);
-	        toast.show();
+	            toast.show();
 		} else {
 			Intent intent = new Intent(this, LoginActivity.class);
+			
 			String ip = editTextIp.getText().toString();
 			int port = Integer.parseInt(editTextPort.getText().toString());
 			
 			SharedPreferences.Editor editor = loginInfos.edit();
 			editor.putString("ip", ip);
 			editor.putInt("port", port);
-	        editor.commit();
+	                editor.commit();
 	        
 			startActivity(intent);
 		}
 	}
 	
 	public static Context getAppContext() {
-        return StartActivity.context;
-    }
+        	return StartActivity.context;
+    	}
 	
 }
