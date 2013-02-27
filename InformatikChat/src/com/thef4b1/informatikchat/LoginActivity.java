@@ -61,7 +61,7 @@ public class LoginActivity extends Activity {
 		
 		if(editTextUsername.length()==0 || editTextPassword.length()==0){
 		    int duration = Toast.LENGTH_LONG;
-		    Toast toast = Toast.makeText(getBaseContext(), R.string.toast_noip, duration);
+		    Toast toast = Toast.makeText(getBaseContext(), R.string.toast_nousername, duration);
 	        toast.show();
 		} else {
 			String username = editTextUsername.getText().toString();
@@ -70,6 +70,7 @@ public class LoginActivity extends Activity {
 			SharedPreferences.Editor editor = loginInfos.edit();
 			editor.putString("username", username);
 			editor.putString("password", password);
+			editor.putBoolean("register?", false);
 			editor.commit();
 			
 			Intent intent = new Intent(this, ChatClientMessageActivity.class);
@@ -81,7 +82,7 @@ public class LoginActivity extends Activity {
 	public void register(View view){
 		if(editTextUsername.length()==0 || editTextPassword.length()==0){
 		    int duration = Toast.LENGTH_LONG;
-		    Toast toast = Toast.makeText(getBaseContext(), R.string.toast_noip, duration);
+		    Toast toast = Toast.makeText(getBaseContext(), R.string.toast_nousername, duration);
 	        toast.show();
 		} else {
 			String username = editTextUsername.getText().toString();
