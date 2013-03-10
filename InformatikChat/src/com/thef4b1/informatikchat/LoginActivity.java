@@ -14,8 +14,6 @@ import android.support.v4.app.NavUtils;
 
 @SuppressLint("NewApi")
 public class LoginActivity extends Activity {
-	String ip;
-	int port;
 	
 	public static final String PREFS_NAME = "MyPrefsFile";
 	SharedPreferences loginInfos;
